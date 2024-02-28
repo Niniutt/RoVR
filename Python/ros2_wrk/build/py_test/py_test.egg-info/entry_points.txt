@@ -1,0 +1,5 @@
+[console_scripts]
+listener = py_test.sub:main
+talkerBattery = py_test.pubBattery:main
+talkerDepth = py_test.pubDepth:main
+

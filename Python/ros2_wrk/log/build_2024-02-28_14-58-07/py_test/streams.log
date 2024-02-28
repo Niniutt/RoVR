@@ -1,0 +1,28 @@
+[1.271s] Invoking command in '/home/mslettom/Desktop/RoVR/Python/ros2_wrk/py_test': PYTHONPATH=/home/mslettom/Desktop/RoVR/Python/ros2_wrk/build/py_test/prefix_override:/home/mslettom/Desktop/RoVR/Python/ros2_wrk/install/py_test/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../build/py_test build --build-base /home/mslettom/Desktop/RoVR/Python/ros2_wrk/build/py_test/build install --record /home/mslettom/Desktop/RoVR/Python/ros2_wrk/build/py_test/install.log --single-version-externally-managed
+[1.707s] running egg_info
+[1.710s] writing ../build/py_test/py_test.egg-info/PKG-INFO
+[1.710s] writing dependency_links to ../build/py_test/py_test.egg-info/dependency_links.txt
+[1.711s] writing entry points to ../build/py_test/py_test.egg-info/entry_points.txt
+[1.711s] writing requirements to ../build/py_test/py_test.egg-info/requires.txt
+[1.711s] writing top-level names to ../build/py_test/py_test.egg-info/top_level.txt
+[1.715s] reading manifest file '../build/py_test/py_test.egg-info/SOURCES.txt'
+[1.715s] adding license file 'LICENSE'
+[1.718s] writing manifest file '../build/py_test/py_test.egg-info/SOURCES.txt'
+[1.718s] running build
+[1.718s] running build_py
+[1.719s] copying py_test/pubBattery.py -> /home/mslettom/Desktop/RoVR/Python/ros2_wrk/build/py_test/build/lib/py_test
+[1.722s] running install
+[1.722s] running install_lib
+[1.722s] copying /home/mslettom/Desktop/RoVR/Python/ros2_wrk/build/py_test/build/lib/py_test/pubBattery.py -> /home/mslettom/Desktop/RoVR/Python/ros2_wrk/install/py_test/lib/python3.10/site-packages/py_test
+[1.723s] byte-compiling /home/mslettom/Desktop/RoVR/Python/ros2_wrk/install/py_test/lib/python3.10/site-packages/py_test/pubBattery.py to pubBattery.cpython-310.pyc
+[1.723s] running install_data
+[1.723s] running install_egg_info
+[1.723s] removing '/home/mslettom/Desktop/RoVR/Python/ros2_wrk/install/py_test/lib/python3.10/site-packages/py_test-0.0.0-py3.10.egg-info' (and everything under it)
+[1.723s] Copying ../build/py_test/py_test.egg-info to /home/mslettom/Desktop/RoVR/Python/ros2_wrk/install/py_test/lib/python3.10/site-packages/py_test-0.0.0-py3.10.egg-info
+[1.723s] /usr/lib/python3/dist-packages/setuptools/command/install.py:34: SetuptoolsDeprecationWarning: setup.py install is deprecated. Use build and pip and other standards-based tools.
+[1.723s]   warnings.warn(
+[1.731s] running install_scripts
+[1.759s] Installing talkerBattery script to /home/mslettom/Desktop/RoVR/Python/ros2_wrk/install/py_test/lib/py_test
+[1.766s] Installing talkerDepth script to /home/mslettom/Desktop/RoVR/Python/ros2_wrk/install/py_test/lib/py_test
+[1.766s] writing list of installed files to '/home/mslettom/Desktop/RoVR/Python/ros2_wrk/build/py_test/install.log'
+[1.806s] Invoked command in '/home/mslettom/Desktop/RoVR/Python/ros2_wrk/py_test' returned '0': PYTHONPATH=/home/mslettom/Desktop/RoVR/Python/ros2_wrk/build/py_test/prefix_override:/home/mslettom/Desktop/RoVR/Python/ros2_wrk/install/py_test/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../build/py_test build --build-base /home/mslettom/Desktop/RoVR/Python/ros2_wrk/build/py_test/build install --record /home/mslettom/Desktop/RoVR/Python/ros2_wrk/build/py_test/install.log --single-version-externally-managed

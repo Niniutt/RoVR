@@ -1,0 +1,45 @@
+[1.496s] Invoking command in '/home/mslettom/Desktop/RoVR/Python/ros2_wrk/py_test': PYTHONPATH=/home/mslettom/Desktop/RoVR/Python/ros2_wrk/build/py_test/prefix_override:/home/mslettom/Desktop/RoVR/Python/ros2_wrk/install/py_test/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../build/py_test build --build-base /home/mslettom/Desktop/RoVR/Python/ros2_wrk/build/py_test/build install --record /home/mslettom/Desktop/RoVR/Python/ros2_wrk/build/py_test/install.log --single-version-externally-managed
+[1.851s] running egg_info
+[1.852s] creating ../build/py_test/py_test.egg-info
+[1.853s] writing ../build/py_test/py_test.egg-info/PKG-INFO
+[1.853s] writing dependency_links to ../build/py_test/py_test.egg-info/dependency_links.txt
+[1.853s] writing entry points to ../build/py_test/py_test.egg-info/entry_points.txt
+[1.854s] writing requirements to ../build/py_test/py_test.egg-info/requires.txt
+[1.854s] writing top-level names to ../build/py_test/py_test.egg-info/top_level.txt
+[1.854s] writing manifest file '../build/py_test/py_test.egg-info/SOURCES.txt'
+[1.857s] reading manifest file '../build/py_test/py_test.egg-info/SOURCES.txt'
+[1.858s] adding license file 'LICENSE'
+[1.859s] writing manifest file '../build/py_test/py_test.egg-info/SOURCES.txt'
+[1.859s] running build
+[1.859s] running build_py
+[1.860s] creating /home/mslettom/Desktop/RoVR/Python/ros2_wrk/build/py_test/build
+[1.860s] creating /home/mslettom/Desktop/RoVR/Python/ros2_wrk/build/py_test/build/lib
+[1.861s] creating /home/mslettom/Desktop/RoVR/Python/ros2_wrk/build/py_test/build/lib/py_test
+[1.861s] copying py_test/pubDepth.py -> /home/mslettom/Desktop/RoVR/Python/ros2_wrk/build/py_test/build/lib/py_test
+[1.862s] copying py_test/__init__.py -> /home/mslettom/Desktop/RoVR/Python/ros2_wrk/build/py_test/build/lib/py_test
+[1.862s] running install
+[1.863s] /usr/lib/python3/dist-packages/setuptools/command/install.py:34: SetuptoolsDeprecationWarning: setup.py install is deprecated. Use build and pip and other standards-based tools.
+[1.863s]   warnings.warn(
+[1.863s] running install_lib
+[1.865s] creating /home/mslettom/Desktop/RoVR/Python/ros2_wrk/install/py_test/lib/python3.10/site-packages/py_test
+[1.869s] copying /home/mslettom/Desktop/RoVR/Python/ros2_wrk/build/py_test/build/lib/py_test/pubDepth.py -> /home/mslettom/Desktop/RoVR/Python/ros2_wrk/install/py_test/lib/python3.10/site-packages/py_test
+[1.869s] copying /home/mslettom/Desktop/RoVR/Python/ros2_wrk/build/py_test/build/lib/py_test/__init__.py -> /home/mslettom/Desktop/RoVR/Python/ros2_wrk/install/py_test/lib/python3.10/site-packages/py_test
+[1.869s] byte-compiling /home/mslettom/Desktop/RoVR/Python/ros2_wrk/install/py_test/lib/python3.10/site-packages/py_test/pubDepth.py to pubDepth.cpython-310.pyc
+[1.869s]   File "/home/mslettom/Desktop/RoVR/Python/ros2_wrk/install/py_test/lib/python3.10/site-packages/py_test/pubDepth.py", line 21
+[1.869s]     def main(args=None)
+[1.869s]                        ^
+[1.870s] SyntaxError: expected ':'
+[1.870s] 
+[1.870s] byte-compiling /home/mslettom/Desktop/RoVR/Python/ros2_wrk/install/py_test/lib/python3.10/site-packages/py_test/__init__.py to __init__.cpython-310.pyc
+[1.870s] running install_data
+[1.870s] creating /home/mslettom/Desktop/RoVR/Python/ros2_wrk/install/py_test/share/ament_index
+[1.870s] creating /home/mslettom/Desktop/RoVR/Python/ros2_wrk/install/py_test/share/ament_index/resource_index
+[1.870s] creating /home/mslettom/Desktop/RoVR/Python/ros2_wrk/install/py_test/share/ament_index/resource_index/packages
+[1.871s] copying resource/py_test -> /home/mslettom/Desktop/RoVR/Python/ros2_wrk/install/py_test/share/ament_index/resource_index/packages
+[1.871s] copying package.xml -> /home/mslettom/Desktop/RoVR/Python/ros2_wrk/install/py_test/share/py_test
+[1.871s] running install_egg_info
+[1.871s] Copying ../build/py_test/py_test.egg-info to /home/mslettom/Desktop/RoVR/Python/ros2_wrk/install/py_test/lib/python3.10/site-packages/py_test-0.0.0-py3.10.egg-info
+[1.873s] running install_scripts
+[1.902s] Installing talker script to /home/mslettom/Desktop/RoVR/Python/ros2_wrk/install/py_test/lib/py_test
+[1.902s] writing list of installed files to '/home/mslettom/Desktop/RoVR/Python/ros2_wrk/build/py_test/install.log'
+[1.936s] Invoked command in '/home/mslettom/Desktop/RoVR/Python/ros2_wrk/py_test' returned '0': PYTHONPATH=/home/mslettom/Desktop/RoVR/Python/ros2_wrk/build/py_test/prefix_override:/home/mslettom/Desktop/RoVR/Python/ros2_wrk/install/py_test/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../build/py_test build --build-base /home/mslettom/Desktop/RoVR/Python/ros2_wrk/build/py_test/build install --record /home/mslettom/Desktop/RoVR/Python/ros2_wrk/build/py_test/install.log --single-version-externally-managed

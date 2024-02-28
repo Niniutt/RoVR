@@ -1,0 +1,3 @@
+[0.000000] (-) TimerEvent: {}
+[0.000406] (-) JobUnselected: {'identifier': 'py_test'}
+[0.000462] (-) EventReactorShutdown: {}
