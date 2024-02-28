@@ -6,6 +6,7 @@ using System.Threading;
 using System.Collections.Generic;
 using UnityEngine.UIElements;
 using System;
+using System.Collections.Concurrent;
 
 public class TCPServer : MonoBehaviour
 {
@@ -17,7 +18,8 @@ public class TCPServer : MonoBehaviour
 
     // Position is the data being received in this example
     string[] message;
-    List<Vector3> positions = new List<Vector3>();
+    public List<Vector3> positions = new List<Vector3>();
+    ConcurrentQueue<string> messageQueue = new ConcurrentQueue<string>();
 
     void Start()
     {
@@ -56,58 +58,68 @@ public class TCPServer : MonoBehaviour
         string dataReceived = Encoding.UTF8.GetString(buffer, 0, bytesRead);
 
         // Make sure we're not getting an empty string
-        //dataReceived.Trim();
+        dataReceived.Trim();
         if (dataReceived != null && dataReceived != "")
         {
             // Convert the received string of data to the format we are using
-            message = ParseData(dataReceived);
+            //message = ParseData(dataReceived);
+            messageQueue.Enqueue(dataReceived);
 
             nwStream.Write(buffer, 0, bytesRead);
         }
     }
 
-    public string[] ParseData(string dataString)
+    public void ParseData()
     {
         // Show data before parsing
-        Debug.Log(dataString);
-
-        // Split the dataString into substrings
-        string[] substrings = dataString.Split(new string[] { "], " }, StringSplitOptions.None);
-
-        // Process each substring
-        foreach (string substring in substrings)
+        //Debug.Log(dataString);
+        while (messageQueue.TryDequeue(out var message))
         {
-            // Remove any remaining brackets
-            string trimmedSubstring = substring.Replace("[", "").Replace("]", "");
+            string data = message.Replace("{", "").Replace("}", "");
 
-            // Split the substring into key-value pairs
-            string[] keyValue = trimmedSubstring.Split(':');
+            // Split the dataString into substrings
+            string[] substrings = data.Split(new string[] { "]," }, StringSplitOptions.None);
+            //Debug.Log("Substings:"+ substrings.ToString());
 
-            string key = keyValue[0].Trim();
-            string value = keyValue[1].Trim();
+            // Process each substring
+            foreach (string substring in substrings)
+            {
+                string trimmedSubstring = substring.Replace("[", "").Replace("]", "");
+                //Debug.Log($"Trimmed: {trimmedSubstring}");
 
-            // Display or process key-value pairs as needed
-            Debug.Log($"Key: {key}, Value: {value}");
-            QueueData(key, value);
+                string[] keyValue = trimmedSubstring.Split(':');
+
+                string key = keyValue[0].Trim();
+                string value = keyValue[1].Trim();
+
+                // Display or process key-value pairs as needed
+                //Debug.Log($"Key: {key}, Value: {value}");
+                QueueData(key, value);
+            }
         }
-
-        return substrings;
     }
 
     void Update()
     {
         // Set this object's position in the scene according to the position received
         //transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y + rotation.y, transform.rotation.eulerAngles.z + rotation.z);
-        UpdatePosition();
+        ParseData();
+        List<Vector3> positionCopy = new List<Vector3>();
+        foreach (Vector3 position in positions)
+        {
+            positionCopy.Add(position);
+        }
+        positions.RemoveAll(x => positionCopy.Contains(x));
+
+        UpdatePosition(positionCopy);
     }
 
-    private void UpdatePosition()
+    private void UpdatePosition(List<Vector3> pos)
     {
-        for (int i = 0; i < positions.Count; i++) 
-        { 
-            transform.position += positions[i];
+        foreach (var vec in pos)
+        {
+            transform.position += vec;
         }
-        positions.Clear();
     }
 
     private void QueueData(string key, string value) 
@@ -115,6 +127,7 @@ public class TCPServer : MonoBehaviour
         switch (key)
         {
             case "PositionDelta" : positions.Add(parseVector(value)); break;
+            case "Message": Debug.Log("ROV message:" + value); break;
             default : break;
         }
     }
