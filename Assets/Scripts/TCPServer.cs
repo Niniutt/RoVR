@@ -4,9 +4,9 @@ using System.Text;
 using UnityEngine;
 using System.Threading;
 using System.Collections.Generic;
-using UnityEngine.UIElements;
 using System;
 using System.Collections.Concurrent;
+using Unity.Collections;
 
 public class TCPServer : MonoBehaviour
 {
@@ -17,12 +17,17 @@ public class TCPServer : MonoBehaviour
     bool running;
 
     // Position is the data being received in this example
-    string[] message;
-    public List<Vector3> positions = new List<Vector3>();
+    [SerializeField]
+    private List<Vector3> positionDelta = new List<Vector3>();
+    [SerializeField]
+    private List<string> message = new List<string>();
     ConcurrentQueue<string> messageQueue = new ConcurrentQueue<string>();
 
+    GameObject UIParent;
     void Start()
     {
+        if (UIParent == null)
+            UIParent = GameObject.Find("UI");
         // Receive on a separate thread so Unity doesn't freeze waiting for data
         ThreadStart ts = new ThreadStart(GetData);
         thread = new Thread(ts);
@@ -105,11 +110,11 @@ public class TCPServer : MonoBehaviour
         //transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y + rotation.y, transform.rotation.eulerAngles.z + rotation.z);
         ParseData();
         List<Vector3> positionCopy = new List<Vector3>();
-        foreach (Vector3 position in positions)
+        foreach (Vector3 position in positionDelta)
         {
             positionCopy.Add(position);
         }
-        positions.RemoveAll(x => positionCopy.Contains(x));
+        positionDelta.RemoveAll(x => positionCopy.Contains(x));
 
         UpdatePosition(positionCopy);
     }
@@ -126,8 +131,8 @@ public class TCPServer : MonoBehaviour
     {
         switch (key)
         {
-            case "PositionDelta" : positions.Add(parseVector(value)); break;
-            case "Message": Debug.Log("ROV message:" + value); break;
+            case "PositionDelta" : positionDelta.Add(parseVector(value)); break;
+            case "Message": UIParent.BroadcastMessage("OnMessageUpdate", value, SendMessageOptions.DontRequireReceiver); break;
             default : break;
         }
     }
