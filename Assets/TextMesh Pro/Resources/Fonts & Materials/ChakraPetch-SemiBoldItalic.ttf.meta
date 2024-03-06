@@ -10,7 +10,26 @@ TrueTypeFontImporter:
   includeFontData: 1
   fontNames:
   - Chakra Petch
-  fallbackFontReferences: []
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: f1c8c3c4972451548b299e0922ee2d4f, type: 3}
+  - {fileID: 12800000, guid: 0e87606a51aab30418144ea4db16664c, type: 3}
+  - {fileID: 12800000, guid: 17a96c9903c818b48891d1aa70c16777, type: 3}
+  - {fileID: 12800000, guid: ae67dbcb5d08ffc49a48fbb9392891e3, type: 3}
+  - {fileID: 12800000, guid: aa62a456478360e48a84e0f0bdb15241, type: 3}
+  - {fileID: 12800000, guid: 48c85f1f4e8049d4cac66dd208f8dc46, type: 3}
+  - {fileID: 12800000, guid: 0261d058a7d5363468274487eb2436f1, type: 3}
+  - {fileID: 12800000, guid: 90672abe32ddfe742af3ad58ceb5e0dc, type: 3}
+  - {fileID: 12800000, guid: d3b6b6e35daaadb4f985a33856b87a22, type: 3}
+  - {fileID: 12800000, guid: bc0b968bd98624d4297d27a58f7ce748, type: 3}
+  - {fileID: 12800000, guid: 453b886033008e94884a3287580eeae2, type: 3}
+  - {fileID: 12800000, guid: 943bd5803e628ac4a857017411ad48e6, type: 3}
+  - {fileID: 12800000, guid: d044216b157100543aae9cc1e33b1307, type: 3}
+  - {fileID: 12800000, guid: 4ac5429abd443194cb753ce25e514447, type: 3}
+  - {fileID: 12800000, guid: 9f5367f49850b5543a7fc3340132ebca, type: 3}
+  - {fileID: 12800000, guid: 7ee87fa87e46c904d9fd9766a1b1f7b4, type: 3}
+  - {fileID: 12800000, guid: 24c9964aec0c1394d91159bc2661a0f4, type: 3}
+  - {fileID: 12800000, guid: b0a5ee7dd3a80e24daaca86d5bbc5642, type: 3}
+  - {fileID: 12800000, guid: 9bafd1878afb3574cb9553189288bb97, type: 3}
   customCharacters: 
   fontRenderingMode: 0
   ascentCalculationMode: 1
