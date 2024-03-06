@@ -17,10 +17,7 @@ public class TCPServer : MonoBehaviour
     bool running;
 
     // Position is the data being received in this example
-    [SerializeField]
-    private List<Vector3> positionDelta = new List<Vector3>();
-    [SerializeField]
-    private List<string> message = new List<string>();
+    private DataObject data;
     ConcurrentQueue<string> messageQueue = new ConcurrentQueue<string>();
 
     GameObject UIParent;
@@ -110,11 +107,11 @@ public class TCPServer : MonoBehaviour
         //transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y + rotation.y, transform.rotation.eulerAngles.z + rotation.z);
         ParseData();
         List<Vector3> positionCopy = new List<Vector3>();
-        foreach (Vector3 position in positionDelta)
+        foreach (Vector3 position in data.positionDelta)
         {
             positionCopy.Add(position);
         }
-        positionDelta.RemoveAll(x => positionCopy.Contains(x));
+        data.positionDelta.RemoveAll(x => positionCopy.Contains(x));
 
         UpdatePosition(positionCopy);
     }
@@ -131,7 +128,7 @@ public class TCPServer : MonoBehaviour
     {
         switch (key)
         {
-            case "PositionDelta" : positionDelta.Add(parseVector(value)); break;
+            case "PositionDelta" : data.positionDelta.Add(parseVector(value)); break;
             case "Message": UIParent.BroadcastMessage("OnMessageUpdate", value, SendMessageOptions.DontRequireReceiver); break;
             default : break;
         }
