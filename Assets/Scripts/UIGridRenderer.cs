@@ -5,17 +5,20 @@ using UnityEngine.UI;
 
 public class UIGridRenderer : Graphic
 {
+    // Public variables
     public Vector2Int gridSize = new Vector2Int(3, 3);
     public float thickness = 0.03f;
 
     public float xOrigin = 0;
     public float yOrigin = 0;
 
+    // Private variables
     private float width;
     private float height;
     private float cellWidth;
     private float cellHeight;
 
+    // Create mesh and draw vertices and triangles
     protected override void OnPopulateMesh(VertexHelper vh)
     {
         vh.Clear();
@@ -40,6 +43,7 @@ public class UIGridRenderer : Graphic
         
     }
 
+    // Draw rectangle (of unit 1 X 1)
     private void DrawCell(int x, int y, int index, VertexHelper vh)
     {
         float xPos = xOrigin + cellWidth * x;
