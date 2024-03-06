@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class UIGridRenderer : Graphic
 {
     // Public variables
-    public Vector2Int gridSize = new Vector2Int(3, 3);
+    public Vector2 gridSize = new Vector2(3f, 3f);
     public float thickness = 0.03f;
 
     public float xOrigin = 0;
@@ -86,7 +86,6 @@ public class UIGridRenderer : Graphic
         vh.AddVert(vertex);
 
         // Draw rectangle into rectangle
-
         int offset = index * 8;
 
         // Left Edge

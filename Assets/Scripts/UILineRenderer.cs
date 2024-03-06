@@ -1,17 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 public class UILineRenderer : Graphic
 {
     // Public variables
-    public Vector2Int gridSize;
+    public Vector2 gridSize;
     public UIGridRenderer gridRenderer;
 
     public float thickness = 0.03f;
 
     public List<Vector2> points;
+    public float xMax;
+    public float yMax;
 
     // Private variables
     private float xOrigin = 0;
@@ -35,6 +39,11 @@ public class UILineRenderer : Graphic
 
         width = rectTransform.rect.width;
         height = rectTransform.rect.height;
+
+        xMax = points.Max(v => v.x);
+        yMax = points.Max(v => v.y);
+
+        // Closest power of ten?
 
         unitWidth = width / (float)gridSize.x;
         unitHeight = height / (float)gridSize.y;
