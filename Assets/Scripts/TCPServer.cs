@@ -25,6 +25,9 @@ public class TCPServer : MonoBehaviour
     {
         if (UIParent == null)
             UIParent = GameObject.Find("UI");
+        if (data == null)
+            data = ScriptableObject.CreateInstance<DataObject>();
+
         // Receive on a separate thread so Unity doesn't freeze waiting for data
         ThreadStart ts = new ThreadStart(GetData);
         thread = new Thread(ts);
