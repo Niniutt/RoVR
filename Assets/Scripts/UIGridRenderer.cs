@@ -5,13 +5,16 @@ using UnityEngine.UI;
 
 public class UIGridRenderer : Graphic
 {
-    public Vector2Int gridSize = new Vector2Int(1, 1);
-    public float thickness = 10.0f;
+    public Vector2Int gridSize = new Vector2Int(3, 3);
+    public float thickness = 0.03f;
 
-    float width;
-    float height;
-    float cellWidth;
-    float cellHeight;
+    public float xOrigin = 0;
+    public float yOrigin = 0;
+
+    private float width;
+    private float height;
+    private float cellWidth;
+    private float cellHeight;
 
     protected override void OnPopulateMesh(VertexHelper vh)
     {
@@ -39,8 +42,8 @@ public class UIGridRenderer : Graphic
 
     private void DrawCell(int x, int y, int index, VertexHelper vh)
     {
-        float xPos = cellWidth * x;
-        float yPos = cellHeight * y;
+        float xPos = xOrigin + cellWidth * x;
+        float yPos = yOrigin + cellHeight * y;
 
         UIVertex vertex = UIVertex.simpleVert;
         vertex.color = color;
@@ -49,13 +52,13 @@ public class UIGridRenderer : Graphic
         vertex.position = new Vector3(xPos, yPos);
         vh.AddVert(vertex);
 
-        vertex.position = new Vector3(xPos, yPos + height);
+        vertex.position = new Vector3(xPos, yPos + cellHeight);
         vh.AddVert(vertex);
 
-        vertex.position = new Vector3(xPos + width, yPos + height);
+        vertex.position = new Vector3(xPos + cellWidth, yPos + cellHeight);
         vh.AddVert(vertex);
 
-        vertex.position = new Vector3(xPos + width, yPos);
+        vertex.position = new Vector3(xPos + cellWidth, yPos);
         vh.AddVert(vertex);
 
         //vh.AddTriangle(0, 1, 2);
@@ -69,13 +72,13 @@ public class UIGridRenderer : Graphic
         vertex.position = new Vector3(xPos + distance, yPos + distance);
         vh.AddVert(vertex);
 
-        vertex.position = new Vector3(xPos + distance, yPos + height - distance);
+        vertex.position = new Vector3(xPos + distance, yPos + cellHeight - distance);
         vh.AddVert(vertex);
 
-        vertex.position = new Vector3(xPos + width - distance, yPos + height - distance);
+        vertex.position = new Vector3(xPos + cellWidth - distance, yPos + cellHeight - distance);
         vh.AddVert(vertex);
 
-        vertex.position = new Vector3(xPos + width - distance, yPos + distance);
+        vertex.position = new Vector3(xPos + cellWidth - distance, yPos + distance);
         vh.AddVert(vertex);
 
         // Draw rectangle into rectangle
@@ -87,7 +90,7 @@ public class UIGridRenderer : Graphic
         vh.AddTriangle(offset + 5, offset + 4, offset + 0);
 
         // Top Edge
-        vh.AddTriangle(1, 2, 6);
+        vh.AddTriangle(offset + 1, offset + 2, offset + 6);
         vh.AddTriangle(offset + 6, offset + 5, offset + 1);
 
         // Right Edge
