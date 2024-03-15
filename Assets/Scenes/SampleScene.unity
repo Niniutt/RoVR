@@ -249,7 +249,8 @@ MonoBehaviour:
   m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  gridSize: {x: 6.52, y: 5.73}
+  dataLink: {fileID: 0}
+  gridSize: {x: 5.66, y: 7.63}
   gridRenderer: {fileID: 1512632575}
   thickness: 0.06
   points:
@@ -1317,6 +1318,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
+  - {fileID: 1593760765}
   - {fileID: 158625761}
   - {fileID: 1747295179}
   m_Father: {fileID: 1476576474}
@@ -1342,7 +1344,8 @@ MonoBehaviour:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  gridSize: {x: 6.52, y: 5.73}
+  dataLink: {fileID: 0}
+  gridSize: {x: 5.66, y: 7.63}
   thickness: 0.01
   xOrigin: -0.5
   yOrigin: -0.5
@@ -1354,6 +1357,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1512632573}
   m_CullTransparentMesh: 1
+--- !u!1 &1593760764
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1593760765}
+  - component: {fileID: 1593760766}
+  m_Layer: 0
+  m_Name: DataManagerLink
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1593760765
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1593760764}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.168547, y: -0.119938135, z: 18.771389}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1512632574}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1593760766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1593760764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e3124c24c7e86b47a78b15142bb272d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dataManager: {fileID: 11400000, guid: 9b34f8d4573dd224ea47f9c316f2160f, type: 2}
 --- !u!1 &1665774794
 GameObject:
   m_ObjectHideFlags: 0
@@ -1643,7 +1691,7 @@ MonoBehaviour:
   m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  gridSize: {x: 6.52, y: 5.73}
+  gridSize: {x: 5.66, y: 7.63}
   gridRenderer: {fileID: 1512632575}
   thickness: 0.02
 --- !u!222 &1747295181

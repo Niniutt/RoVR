@@ -8,6 +8,8 @@ using UnityEngine.UIElements;
 public class UILineRenderer : Graphic
 {
     // Public variables
+    public DataLink dataLink;
+
     public Vector2 gridSize;
     public UIGridRenderer gridRenderer;
 
@@ -26,16 +28,32 @@ public class UILineRenderer : Graphic
     private float unitWidth;
     private float unitHeight;
 
-    // Create mesh and draw vertices and triangles
-    protected override void OnPopulateMesh(VertexHelper vh)
+    // Update gridSize and points
+    private void Update()
     {
-        vh.Clear();
-
+        // Update origin
         if (gridRenderer != null)
         {
             xOrigin = gridRenderer.xOrigin;
             yOrigin = gridRenderer.yOrigin;
         }
+        // Update gridSize
+        if (dataLink != null)
+        {
+            if (gridSize != dataLink.dataManager.gridSize)
+            {
+                gridSize = dataLink.dataManager.gridSize;
+
+                // Redraw vertices (= setting the vertices as "outdated")
+                SetVerticesDirty();
+            }
+        }
+    }
+
+    // Create mesh and draw vertices and triangles
+    protected override void OnPopulateMesh(VertexHelper vh)
+    {
+        vh.Clear();
 
         width = rectTransform.rect.width;
         height = rectTransform.rect.height;
@@ -44,6 +62,8 @@ public class UILineRenderer : Graphic
         yMax = points.Max(v => v.y);
 
         // Closest power of ten?
+        //CalculateClosestPowerOfTen(xMax);
+        //CalculateClosestPowerOfTen(yMax);
 
         unitWidth = width / (float)gridSize.x;
         unitHeight = height / (float)gridSize.y;
@@ -56,7 +76,7 @@ public class UILineRenderer : Graphic
         {
             Vector2 point = points[i];
 
-            if (i < points.Count - 1) angle = GetAngle(points[i], points[i+1]);
+            if (i < points.Count - 1) angle = GetAngle(points[i], points[i + 1]);
 
             DrawVerticesForPoint(point, vh, angle);
         }
@@ -88,20 +108,5 @@ public class UILineRenderer : Graphic
         vertex.position = Quaternion.Euler(0, 0, angle) * new Vector3(thickness / 2, 0);
         vertex.position += new Vector3(xOrigin + unitWidth * point.x, yOrigin + unitHeight * point.y);
         vh.AddVert(vertex);
-    }
-
-    // Update gridSize following UIGridRenderer's gridSize parameter
-    private void Update()
-    {
-        if (gridRenderer != null)
-        {
-            if (gridSize != gridRenderer.gridSize)
-            {
-                gridSize = gridRenderer.gridSize;
-
-                // Redraw vertices (= setting the vertices as "outdated")
-                SetVerticesDirty();
-            }
-        }
     }
 }

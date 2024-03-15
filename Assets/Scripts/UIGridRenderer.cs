@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class UIGridRenderer : Graphic
 {
     // Public variables
+    public DataLink dataLink;
+
     public Vector2 gridSize = new Vector2(3f, 3f);
     public float thickness = 0.03f;
 
@@ -18,6 +20,21 @@ public class UIGridRenderer : Graphic
     private float cellWidth;
     private float cellHeight;
 
+    // Update function
+    public void Update()
+    {
+        if (dataLink != null)
+        {
+            if (gridSize != dataLink.dataManager.gridSize)
+            {
+                gridSize = dataLink.dataManager.gridSize;
+
+                // Redraw vertices (= setting the vertices as "outdated")
+                SetVerticesDirty();
+            }
+        }
+    }
+
     // Create mesh and draw vertices and triangles
     protected override void OnPopulateMesh(VertexHelper vh)
     {
@@ -26,8 +43,8 @@ public class UIGridRenderer : Graphic
         width = rectTransform.rect.width;
         height = rectTransform.rect.height;
 
-        cellWidth = width / (float)gridSize.x;
-        cellHeight = height / (float)gridSize.y;
+        cellWidth = width / gridSize.x;
+        cellHeight = height / gridSize.y;
 
         int count = 0;
 
