@@ -62,9 +62,12 @@
   <ItemGroup>
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\Scripts\TCPServer.cs" />
+    <Compile Include="Assets\Scripts\BatteryIcon.cs" />
     <Compile Include="Assets\Scripts\UINotification.cs" />
-    <Compile Include="Assets\ROVController.cs" />
+    <Compile Include="Assets\Scripts\ROVController.cs" />
     <Compile Include="Assets\Scripts\UIGeneral.cs" />
+    <Compile Include="Assets\Scripts\ROVMetrics.cs" />
+    <Compile Include="Assets\Scripts\UIDepth.cs" />
     <Compile Include="Assets\Scripts\DataObject.cs" />
   </ItemGroup>
   <ItemGroup>

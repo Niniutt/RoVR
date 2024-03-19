@@ -6,6 +6,7 @@ using UnityEngine;
 public class UIGeneral : MonoBehaviour
 {
     public TextMeshProUGUI messageTest;
+    public TextMeshProUGUI batteryRemaining;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,5 +22,10 @@ public class UIGeneral : MonoBehaviour
     public void OnMessageUpdate(string message)
     {
         messageTest.text = message;
+    }
+    public void OnBatteryUpdate(float battery)
+    {
+        batteryRemaining.text = battery.ToString() + "%";
+
     }
 }

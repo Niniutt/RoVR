@@ -131,8 +131,55 @@ public class TCPServer : MonoBehaviour
     {
         switch (key)
         {
-            case "PositionDelta" : data.positionDelta.Add(parseVector(value)); break;
             case "Message": UIParent.BroadcastMessage("OnMessageUpdate", value, SendMessageOptions.DontRequireReceiver); break;
+            case "time": 
+                {
+                    data.time = float.Parse(value); 
+                    UIParent.BroadcastMessage("OnTimeUpdate", data.time, SendMessageOptions.DontRequireReceiver);
+                    break;    
+                }
+                case "battery":
+                {
+                    data.battery = float.Parse(value); 
+                    UIParent.BroadcastMessage("OnBatteryUpdate", data.battery, SendMessageOptions.DontRequireReceiver);
+                    break;
+                }
+                case "positionDelta":
+                {
+                    data.positionDelta.Add(parseVector(value)); 
+                    UIParent.BroadcastMessage("OnPositionDeltaUpdate", data.positionDelta, SendMessageOptions.DontRequireReceiver);
+                    break;
+                }
+                case "depth":
+                {
+                    data.depth = float.Parse(value); 
+                    UIParent.BroadcastMessage("OnDepthUpdate", data.depth, SendMessageOptions.DontRequireReceiver);
+                    break;
+                }
+                case "orientation":
+                {
+                    data.orientation = parseVector(value); 
+                    UIParent.BroadcastMessage("OnOrientationUpdate", data.orientation, SendMessageOptions.DontRequireReceiver);
+                    break;
+                }
+                case "angular velocity":
+                {
+                    data.angularVelocity = parseVector(value); 
+                    UIParent.BroadcastMessage("OnAngularVelocityUpdate", data.angularVelocity, SendMessageOptions.DontRequireReceiver);
+                    break;
+                }
+                case "linear acceleration":
+                {
+                    data.linearAcceleration = parseVector(value); 
+                    UIParent.BroadcastMessage("OnLinearAccelerationUpdate", data.linearAcceleration, SendMessageOptions.DontRequireReceiver);
+                    break;
+                }
+                case "doppler velocity":
+                {
+                    data.dopplerVelocity = parseVector(value); 
+                    UIParent.BroadcastMessage("OnDopplerVelocityUpdate", data.dopplerVelocity, SendMessageOptions.DontRequireReceiver);
+                    break;
+                }
             default : break;
         }
     }
