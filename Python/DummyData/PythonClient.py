@@ -39,12 +39,12 @@ try:
                    "],[pressure : " + str(pressure) +
                    "],[depth : [" + str(depth) +
                    "],[battery : [" + str(battery) +
-                   "],[battery lifetime : [" + str(est_battery_life) +
-                   "],[time before ascent : [" + str(est_ascent) +
+                   "],[battery_lifetime : [" + str(est_battery_life) +
+                   "],[time_before_ascent : [" + str(est_ascent) +
                    "],[orientation : " + str(orientation) +
-                   "],[angular velocity : " + str(angular_v) +
-                   "],[linear acceleration : " + str(linear_a) +
-                   "],[doppler velocity : " + str(doppler_v) +
+                   "],[angular_velocity : " + str(angular_v) +
+                   "],[linear_acceleration : " + str(linear_a) +
+                   "],[doppler_velocity : " + str(doppler_v) +
                    "]}")
 
         sock.sendall(data.encode("utf-8"))

@@ -62,8 +62,12 @@
   <ItemGroup>
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\Scripts\TCPServer.cs" />
-    <Compile Include="Assets\ROVController.cs" />
+    <Compile Include="Assets\Scripts\BatteryIcon.cs" />
+    <Compile Include="Assets\Scripts\UINotification.cs" />
+    <Compile Include="Assets\Scripts\ROVController.cs" />
     <Compile Include="Assets\Scripts\UIGeneral.cs" />
+    <Compile Include="Assets\Scripts\ROVMetrics.cs" />
+    <Compile Include="Assets\Scripts\UIDepth.cs" />
     <Compile Include="Assets\Scripts\DataObject.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -943,12 +947,16 @@
       <HintPath>Library\ScriptAssemblies\Unity.XR.OpenXR.Features.ConformanceAutomation.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Unity.XR.OpenXR.Features.OculusQuestSupport.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.XR.OpenXR.Features.OculusQuestSupport.Editor.dll</HintPath>
+    <Reference Include="Unity.2D.Sprite.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.2D.Sprite.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Universal.Config.Runtime">
       <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Config.Runtime.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.XR.OpenXR.Features.OculusQuestSupport.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.XR.OpenXR.Features.OculusQuestSupport.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Core.Editor">
