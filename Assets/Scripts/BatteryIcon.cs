@@ -14,7 +14,10 @@ public class BatteryIcon : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (metrics == null)
+        {
+            metrics = ScriptableObject.CreateInstance<ROVMetrics>();
+        }
     }
 
     // Update is called once per frame

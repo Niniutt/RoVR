@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System;
 using System.Collections.Concurrent;
 using Unity.Collections;
+using System.Drawing;
 
 public class TCPServer : MonoBehaviour
 {
@@ -20,11 +21,15 @@ public class TCPServer : MonoBehaviour
     private DataObject data;
     ConcurrentQueue<string> messageQueue = new ConcurrentQueue<string>();
 
-    GameObject UIParent;
+
+    public GameObject UIParent;
+    public GameObject ROVModel;
     void Start()
     {
         if (UIParent == null)
             UIParent = GameObject.Find("UI");
+        if (ROVModel == null)
+            ROVModel = GameObject.Find("ROVModel");
         if (data == null)
             data = ScriptableObject.CreateInstance<DataObject>();
 
@@ -129,62 +134,75 @@ public class TCPServer : MonoBehaviour
 
     private void QueueData(string key, string value) 
     {
+        //Debug.Log($"Key: {key}, Value: {value}");
         switch (key)
         {
             case "Message": UIParent.BroadcastMessage("OnMessageUpdate", value, SendMessageOptions.DontRequireReceiver); break;
             case "time": 
-                {
-                    data.time = float.Parse(value); 
-                    UIParent.BroadcastMessage("OnTimeUpdate", data.time, SendMessageOptions.DontRequireReceiver);
-                    break;    
-                }
-                case "battery":
-                {
-                    data.battery = float.Parse(value); 
-                    UIParent.BroadcastMessage("OnBatteryUpdate", data.battery, SendMessageOptions.DontRequireReceiver);
-                    break;
-                }
-                case "positionDelta":
-                {
-                    data.positionDelta.Add(parseVector(value)); 
-                    UIParent.BroadcastMessage("OnPositionDeltaUpdate", data.positionDelta, SendMessageOptions.DontRequireReceiver);
-                    break;
-                }
-                case "depth":
-                {
-                    data.depth = float.Parse(value); 
-                    UIParent.BroadcastMessage("OnDepthUpdate", data.depth, SendMessageOptions.DontRequireReceiver);
-                    break;
-                }
-                case "orientation":
-                {
-                    data.orientation = parseVector(value); 
-                    UIParent.BroadcastMessage("OnOrientationUpdate", data.orientation, SendMessageOptions.DontRequireReceiver);
-                    break;
-                }
-                case "angular velocity":
-                {
-                    data.angularVelocity = parseVector(value); 
-                    UIParent.BroadcastMessage("OnAngularVelocityUpdate", data.angularVelocity, SendMessageOptions.DontRequireReceiver);
-                    break;
-                }
-                case "linear acceleration":
-                {
-                    data.linearAcceleration = parseVector(value); 
-                    UIParent.BroadcastMessage("OnLinearAccelerationUpdate", data.linearAcceleration, SendMessageOptions.DontRequireReceiver);
-                    break;
-                }
-                case "doppler velocity":
-                {
-                    data.dopplerVelocity = parseVector(value); 
-                    UIParent.BroadcastMessage("OnDopplerVelocityUpdate", data.dopplerVelocity, SendMessageOptions.DontRequireReceiver);
-                    break;
-                }
+            {
+                data.time = float.Parse(value); 
+                UIParent.BroadcastMessage("OnTimeUpdate", data.time, SendMessageOptions.DontRequireReceiver);
+                break;    
+            }
+            case "battery":
+            {
+                data.battery = float.Parse(value); 
+                UIParent.BroadcastMessage("OnBatteryUpdate", data.battery, SendMessageOptions.DontRequireReceiver);
+                break;
+            }
+            case "battery_lifetime":
+            {
+                data.batteryLifetime = float.Parse(value);
+                UIParent.BroadcastMessage("OnBatteryLifetimeUpdate", data.batteryLifetime, SendMessageOptions.DontRequireReceiver);
+                break;
+            }
+            case "time_before_ascent":
+            {
+                data.time_before_ascent = float.Parse(value);
+                UIParent.BroadcastMessage("OnTimeBeforeAscentUpdate", data.time_before_ascent, SendMessageOptions.DontRequireReceiver);
+                break;
+            }
+            case "pressure":
+            {
+                data.pressure = float.Parse(value) / 101325;
+                UIParent.BroadcastMessage("OnPressureUpdate", data.pressure, SendMessageOptions.DontRequireReceiver);
+                break;
+            }
+            case "depth":
+            {
+                data.depth = float.Parse(value); 
+                UIParent.BroadcastMessage("OnDepthUpdate", data.depth, SendMessageOptions.DontRequireReceiver);
+                break;
+            }
+            case "orientation":
+            {
+                data.orientation = parseVector4(value);
+                ROVModel.BroadcastMessage("OnOrientationUpdate", data.orientation, SendMessageOptions.DontRequireReceiver);
+                break;
+            }
+            case "angular_velocity":
+            {
+                data.angularVelocity = parseVector3(value);
+                ROVModel.BroadcastMessage("OnAngularVelocityUpdate", data.angularVelocity, SendMessageOptions.DontRequireReceiver);
+                break;
+            }
+            case "linear_acceleration":
+            {
+                data.linearAcceleration = parseVector3(value);
+                ROVModel.BroadcastMessage("OnLinearAccelerationUpdate", data.linearAcceleration, SendMessageOptions.DontRequireReceiver);
+                break;
+            }
+            case "doppler_velocity":
+            {
+                data.dopplerVelocity = parseVector3(value); 
+                ROVModel.BroadcastMessage("OnDopplerVelocityUpdate", data.dopplerVelocity, SendMessageOptions.DontRequireReceiver);
+                break;
+            }
             default : break;
         }
     }
 
-    private Vector3 parseVector(string valueString)
+    private Vector3 parseVector3(string valueString)
     {
         string[] stringArray = valueString.Split(',');
         if (stringArray.Length != 3)
@@ -194,6 +212,19 @@ public class TCPServer : MonoBehaviour
             float.Parse(stringArray[0]),
             float.Parse(stringArray[1]),
             float.Parse(stringArray[2])
+            );
+    }
+    private Vector4 parseVector4(string valueString)
+    {
+        string[] stringArray = valueString.Split(',');
+        if (stringArray.Length != 4)
+            throw new Exception("Data Mismatch");
+
+        return new Vector4(
+            float.Parse(stringArray[0]),
+            float.Parse(stringArray[1]),
+            float.Parse(stringArray[2]),
+            float.Parse(stringArray[3])
             );
     }
 }

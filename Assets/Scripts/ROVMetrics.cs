@@ -8,6 +8,6 @@ public class ROVMetrics : ScriptableObject
     public int depthWarningThreshold = 175;
     public int batteryWarningThreshold = 25;
     public int batteryAlertThreshold = 15;
-    public List<UINotification> newNotification = new List<UINotification>();
-    public List<UINotification> notificationLog = new List<UINotification>();
+    public List<GameObject> newNotification = new List<GameObject>();
+    public List<GameObject> notificationLog = new List<GameObject>();
 }

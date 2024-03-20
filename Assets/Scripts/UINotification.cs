@@ -14,9 +14,9 @@ public class UINotification : MonoBehaviour
     [SerializeField]
     private Image icon;
     [SerializeField]
-    private string title = "Title";
+    public string title = "Title";
     [SerializeField]
-    private string description = "Description";
+    public string description = "Description";
     private TextMeshProUGUI textField;
 
     Color colorAlert = new Color32(0xFF, 0xC8, 0x00, 0xFB);
