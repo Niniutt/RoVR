@@ -8,18 +8,15 @@ using UnityEngine.UIElements;
 public class UILineRenderer : Graphic
 {
     // Public variables
-    public DataLink dataLink;
-
     public Vector2 gridSize;
-    public UIGridRenderer gridRenderer;
+    public List<Vector2> points;
 
     public float thickness = 0.03f;
 
-    public List<Vector2> points;
-    public float xMax;
-    public float yMax;
-
     // Private variables
+    private float xMax;
+    private float yMax;
+
     private float xOrigin = 0;
     private float yOrigin = 0;
 
@@ -31,23 +28,8 @@ public class UILineRenderer : Graphic
     // Update gridSize and points
     private void Update()
     {
-        // Update origin
-        if (gridRenderer != null)
-        {
-            xOrigin = gridRenderer.xOrigin;
-            yOrigin = gridRenderer.yOrigin;
-        }
-        // Update gridSize
-        if (dataLink != null)
-        {
-            if (gridSize != dataLink.dataManager.gridSize)
-            {
-                gridSize = dataLink.dataManager.gridSize;
-
-                // Redraw vertices (= setting the vertices as "outdated")
-                SetVerticesDirty();
-            }
-        }
+        // Redraw vertices (= setting the vertices as "outdated")
+        SetVerticesDirty();
     }
 
     // Create mesh and draw vertices and triangles
@@ -57,6 +39,14 @@ public class UILineRenderer : Graphic
 
         width = rectTransform.rect.width;
         height = rectTransform.rect.height;
+
+        if (points == null || points.Count == 0) {
+            points = new List<Vector2>
+            {
+                new Vector2(0f, 0f),
+                new Vector2(1f, 1f)
+            };
+        }
 
         xMax = points.Max(v => v.x);
         yMax = points.Max(v => v.y);

@@ -26,15 +26,16 @@ public class DataManager : ScriptableObject
 
     public void Init()
     {
-        points = new List<Vector2>();
-
-        points.Add(new Vector2(-5f, -5f));
-        points.Add(new Vector2(-2f, -2f));
-        points.Add(new Vector2(0f, 1f));
-        points.Add(new Vector2(1f, 2f));
-        points.Add(new Vector2(2f, 4f));
-        points.Add(new Vector2(3f, 3f));
-        points.Add(new Vector2(4f, 0f));
+        points = new List<Vector2>
+        {
+            new Vector2(0f, 1f),
+            new Vector2(1f, 2f),
+            new Vector2(2f, 4f),
+            new Vector2(3f, 3f),
+            new Vector2(3.5f, 0f),
+            new Vector2(3.6f, 5f),
+            new Vector2(4f, 4f)
+        };
     }
 
     public void Update()
@@ -54,9 +55,6 @@ public class DataManager : ScriptableObject
 
         // Update gridSize
         gridSize = new Vector2(xMax / xGrad, yMax / yGrad);
-
-        Debug.Log("x: " + xDifference + " " + xN + " " + xGrad);
-        Debug.Log("y: " + yDifference + " " + yN + " " + yGrad);
     }
 
     // Calculate the closest power of ten, rounding by default

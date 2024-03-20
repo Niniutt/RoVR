@@ -5,6 +5,9 @@ using UnityEngine;
 public class DataLink : MonoBehaviour
 {
     public DataManager dataManager;
+    public UIAxisRenderer axisRenderer;
+    public UILineRenderer lineRenderer;
+    public UIGridRenderer gridRenderer;
 
     // Start is called before the first frame update
     void Start()
@@ -17,5 +20,12 @@ public class DataLink : MonoBehaviour
     {
         // Listener for changes of data?
         dataManager.Update();
+        Vector2 gridSize = dataManager.gridSize;
+
+        axisRenderer.gridSize = gridSize;
+        lineRenderer.gridSize = gridSize;
+        gridRenderer.gridSize = gridSize;
+
+        lineRenderer.points = dataManager.points;
     }
 }

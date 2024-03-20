@@ -23,16 +23,8 @@ public class UIGridRenderer : Graphic
     // Update function
     public void Update()
     {
-        if (dataLink != null)
-        {
-            if (gridSize != dataLink.dataManager.gridSize)
-            {
-                gridSize = dataLink.dataManager.gridSize;
-
-                // Redraw vertices (= setting the vertices as "outdated")
-                SetVerticesDirty();
-            }
-        }
+        // Redraw vertices (= setting the vertices as "outdated")
+        SetVerticesDirty();
     }
 
     // Create mesh and draw vertices and triangles

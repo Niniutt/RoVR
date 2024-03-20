@@ -11,7 +11,6 @@ public class UIAxisRenderer : Graphic
 {
     // Public variables
     public Vector2 gridSize;
-    public UIGridRenderer gridRenderer;
 
     public float thickness = 0.03f;
 
@@ -25,6 +24,13 @@ public class UIAxisRenderer : Graphic
     private float unitHeight;
 
     private int count = 0;
+
+    // Update gridSize following UIGridRenderer's gridSize parameter
+    private void Update()
+    {
+        // Redraw vertices (= setting the vertices as "outdated")
+        SetVerticesDirty();
+    }
 
     // Create mesh and draw vertices and triangles
     protected override void OnPopulateMesh(VertexHelper vh)
@@ -101,9 +107,6 @@ public class UIAxisRenderer : Graphic
         vh.AddTriangle(offset + 0, offset + 1, offset + 2);
         vh.AddTriangle(offset + 2, offset + 3, offset + 0);
         count++;
-
-        //Debug.Log("Index count: " + vh.currentIndexCount);
-        //Debug.Log("Vertex count: " + vh.currentIndexCount);
     }
 
     // Drawing the arrows at the end of the axis
@@ -151,23 +154,5 @@ public class UIAxisRenderer : Graphic
         vertex.position = Quaternion.Euler(0, 0, angle) * new Vector3(0, -length);
         vertex.position += new Vector3(point.x, point.y);
         vh.AddVert(vertex);
-    }
-
-    // Update gridSize following UIGridRenderer's gridSize parameter
-    private void Update()
-    {
-        if (gridRenderer != null)
-        {
-            if (gridSize != gridRenderer.gridSize)
-            {
-                gridSize = gridRenderer.gridSize;
-
-                xOrigin = gridRenderer.xOrigin;
-                yOrigin = gridRenderer.yOrigin;
-
-                // Redraw vertices (= setting the vertices as "outdated")
-                SetVerticesDirty();
-            }
-        }
     }
 }
