@@ -28,7 +28,7 @@ def analyzeDepth(filename):
         dict = {}
         dict["secs"] = depth_data[i][1][0][1][0][1]
         dict["nano_secs"] = depth_data[i][1][0][1][1][1]
-        dict["pressure"] = depth_data[i+1][1]
+        dict["pressure"] = depth_data[i+1][1]/10
         dict["depth"] = round((dict["pressure"]-101325)/(1025*9.81))
 
         # Adding relative timestamp
