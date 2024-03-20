@@ -48,7 +48,6 @@ public class ROVController : MonoBehaviour
 
     public void OnOrientationUpdate(Vector4 orientation)
     {
-        transform.rotation = new Quaternion(orientation.x, orientation.y, orientation.z, orientation.w);
-        // align orientation z axis with the forward direction of the ROV
+        transform.rotation = Quaternion.Euler(-90, 0, 0) * new Quaternion(orientation.x, orientation.y, orientation.z, orientation.w);
     }
 }
