@@ -8,7 +8,7 @@ public class BatteryIcon : MonoBehaviour
     public ROVMetrics metrics;
     public Image batteryIcon;
     public Slider fill;
-    private Color batteryNormal = new Color32(1, 224, 0, 1); // Light green
+    private Color batteryNormal = new Color32(1, 224, 0, 255); // Light green
     private Color batteryLow = Color.yellow;
     private Color batteryCritical = Color.red;
     // Start is called before the first frame update
