@@ -71,7 +71,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f612fabc1b6a034eb44a29874984b28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  icon: {fileID: 0}
+  icon: {fileID: 8288752724264011296}
   title: Title
   description: Description
 --- !u!1 &6831098369555165657
