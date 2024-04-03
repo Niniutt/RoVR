@@ -147,6 +147,7 @@ public class TCPServer : MonoBehaviour
             case "battery":
             {
                 data.battery = float.Parse(value); 
+                data.batteryLog.Add(data.battery);
                 UIParent.BroadcastMessage("OnBatteryUpdate", data.battery, SendMessageOptions.DontRequireReceiver);
                 break;
             }
@@ -171,6 +172,7 @@ public class TCPServer : MonoBehaviour
             case "depth":
             {
                 data.depth = float.Parse(value); 
+                data.depthLog.Add(data.depth);
                 UIParent.BroadcastMessage("OnDepthUpdate", data.depth, SendMessageOptions.DontRequireReceiver);
                 break;
             }
@@ -195,6 +197,7 @@ public class TCPServer : MonoBehaviour
             case "doppler_velocity":
             {
                 data.dopplerVelocity = parseVector3(value); 
+                data.velocityLog.Add(data.dopplerVelocity.magnitude);
                 ROVModel.BroadcastMessage("OnDopplerVelocityUpdate", data.dopplerVelocity, SendMessageOptions.DontRequireReceiver);
                 break;
             }
