@@ -11,6 +11,8 @@ public class UIAxisRenderer : Graphic
 {
     // Public variables
     public Vector2 gridSize;
+    public List<Vector2> axisPositionsH = new List<Vector2>();
+    public List<Vector2> axisPositionsV = new List<Vector2>();
 
     public float thickness = 0.03f;
 
@@ -51,16 +53,20 @@ public class UIAxisRenderer : Graphic
 
         count = 0;
 
+        axisPositionsH.Clear();
         for (int i = 0; i < gridSize.x + 1; i++)
         {
             Vector2 point = new Vector2(xOrigin + i * unitWidth, yOrigin);
+            axisPositionsH.Add(point);
 
             DrawRectangleFromPoint(point, 2 * thickness, vh, 0);
         }
 
+        axisPositionsV.Clear();
         for (int i = 0; i < gridSize.y + 1; i++)
         {
             Vector2 point = new Vector2(xOrigin, yOrigin + i * unitHeight);
+            axisPositionsV.Add(point);
 
             DrawRectangleFromPoint(point, 2 * thickness, vh, -90);
         }
