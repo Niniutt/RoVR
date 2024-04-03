@@ -69,7 +69,7 @@
     <Compile Include="Assets\Scripts\DataManager.cs" />
     <Compile Include="Assets\Scripts\ROVController.cs" />
     <Compile Include="Assets\Scripts\UILineRenderer.cs" />
-    <Compile Include="Assets\Scripts\UIGeneral.cs" />
+    <Compile Include="Assets\Scripts\UIBattery.cs" />
     <Compile Include="Assets\Scripts\ROVMetrics.cs" />
     <Compile Include="Assets\Scripts\DataLink.cs" />
     <Compile Include="Assets\Scripts\UIDepth.cs" />

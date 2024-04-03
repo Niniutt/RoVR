@@ -1,24 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using Unity.PlasticSCM.Editor.WebApi;
 using UnityEngine;
 
-public class UIDepth : MonoBehaviour
+public class UIBattery : MonoBehaviour
 {
-    public TextMeshProUGUI depth;
-    public TextMeshProUGUI pressure;
-    public TextMeshProUGUI currTime;
+    public TextMeshProUGUI messageTest;
+    public TextMeshProUGUI currentBattery;
+    public TextMeshProUGUI batteryRemainingEst;
     public TextMeshProUGUI timeTilAscent;
     public Transform notificationParent;
     private int lastCheckedNotificationCount = 0;
-    private int activeNotifications = 3;
-    private int maxNotificatoins = 4;
+    private int activeNotifications = 2;
+    private int maxNotificatoins = 3;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        // Get ROVMetrics instance
     }
 
     // Update is called once per frame
@@ -27,36 +26,34 @@ public class UIDepth : MonoBehaviour
         CheckForNotification();
     }
 
-    public void OnDepthUpdate(float depthValue)
+    public void OnBatteryUpdate(float battery)
     {
-        depth.text = depthValue.ToString() + "m";
-    }
-    public void OnPressureUpdate(float pressureValue)
-    {
-        pressure.text = ((int)pressureValue).ToString() + "atm";
+        currentBattery.text = ((int)battery).ToString() + "%";
 
+    }
+    public void OnBatteryLifetimeUpdate(float time)
+    {
+        batteryRemainingEst.text = ((int)(time / 60)).ToString() + "m " + ((int)(time % 60)).ToString() + "s";
     }
     public void OnTimeBeforeAscentUpdate(float time)
     {
         float seconds = (int)(time % 60);
-        timeTilAscent.text = ((int)(time/60)).ToString() + "m " + (seconds).ToString() + "s";
+        timeTilAscent.text = ((int)(time / 60)).ToString() + "m " + (seconds).ToString() + "s";
     }
 
-    public void OnTimeUpdate(float time)
+    public void OnNewNotification(GameObject notification)
     {
-        // Debug.Log("Time: " + time)
-        currTime.text = "Current time: " + ((int)time).ToString() + "s";
-
+        Debug.Log("New Notification");
     }
+
     // TODO: make this an interface
-/// <summary>
-/// Check for new notifications, display them if new notifications are available (priority to depth notifications if found in the first 10)
-/// and limit the number of notifications displayed
-/// </summary>
+    /// <summary>
+    /// Check for new notifications, display them if new notifications are available and limit the number of notifications displayed
+    /// </summary>
     public void CheckForNotification()
     {
         if (ROVMetrics.newNotifications.Count > lastCheckedNotificationCount)
-        { 
+        {
             // If notifications are above the limit, remove all notifications,
             // only show the most recent depth notification and the next 2 notifications
             if (activeNotifications > maxNotificatoins)
@@ -66,11 +63,11 @@ public class UIDepth : MonoBehaviour
                     Destroy(t.gameObject);
                 }
                 activeNotifications = 0;
-                for (int i = 0; i > 10; i--)
+                for (int i = 0; i > (10 <= ROVMetrics.newNotifications.Count? 10: ROVMetrics.newNotifications.Count); i--)
                 {
                     GameObject notification = ROVMetrics.newNotifications[ROVMetrics.newNotifications.Count - i];
-                    if(notification.GetComponent<UINotification>().type == NotificationType.DEPTH)
-                    { 
+                    if (notification.GetComponent<UINotification>().type == NotificationType.BATTERY)
+                    {
                         Instantiate(ROVMetrics.newNotifications[ROVMetrics.newNotifications.Count - i], notificationParent);
                         activeNotifications++;
                         break;
@@ -78,11 +75,12 @@ public class UIDepth : MonoBehaviour
                 }
                 foreach (GameObject notification in ROVMetrics.newNotifications)
                 {
-                    if (activeNotifications >= maxNotificatoins)
-                        break;
-
                     Instantiate(notification, notificationParent);
                     activeNotifications++;
+                    if (activeNotifications >= 3)
+                    {
+                        return;
+                    }
                 }
             }
             else

@@ -7,6 +7,10 @@ using UnityEngine.UI;
 
 public enum NotificationType
 {
+    BATTERY, DEPTH// INFO, ERROR
+}
+public enum NotificationLevel
+{
     WARNING, ALERT// INFO, ERROR
 }
 public class UINotification : MonoBehaviour
@@ -18,9 +22,15 @@ public class UINotification : MonoBehaviour
     [SerializeField]
     public string description = "Description";
     private TextMeshProUGUI textField;
+    public NotificationType type;
+    public NotificationLevel level;
 
-    Color colorAlert = new Color32(0xFF, 0xC8, 0x00, 0xFB);
-    Color colorWarning = new Color32(0xFF, 0xC8, 0x00, 0x00);
+    private int notificationID;
+    [SerializeField]
+    private static int notificationIDCounter = 0;
+
+    Color colorAlert = new Color32(0xFF, 0xC8, 0x00, 0xFF);
+    Color colorWarning = new Color32(0xFF, 0xC8, 0x00, 0xFF);
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +40,8 @@ public class UINotification : MonoBehaviour
 
         if (icon == null)
             icon = GetComponentInChildren<Image>();
+
+        this.notificationID = notificationIDCounter++;
     }
 
     // Update is called once per frame
@@ -38,17 +50,23 @@ public class UINotification : MonoBehaviour
         
     }
 
-    public void setNotification(string title, string desctiption, NotificationType type)
+    public void setNotification(string title, string desctiption, NotificationType type, NotificationLevel level)
     {
+        if (textField == null)
+            textField = GetComponentInChildren<TextMeshProUGUI>();
+
+        if (icon == null)
+            icon = GetComponentInChildren<Image>();
+
         this.title = title;
         this.description = desctiption;
         textField.text = desctiption;
-
-        switch (type)
+        this.type = type;
+        this.level = level;
+        switch (level)
         {
-            case NotificationType.WARNING: icon.color = colorWarning; break;
-            case NotificationType.ALERT: icon.color = colorAlert; break;
-
+            case NotificationLevel.WARNING: icon.color = colorWarning; break;
+            case NotificationLevel.ALERT: icon.color = colorAlert; break;
         }
     }
 }
