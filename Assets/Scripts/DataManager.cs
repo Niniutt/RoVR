@@ -91,7 +91,7 @@ public class DataManager : ScriptableObject
             }
             else
             {
-                return possibleGraduations[i]; // * Mathf.Pow(10, closest);
+                return possibleGraduations[i] * Mathf.Pow(10, closest);
             }
         }
         return 0;

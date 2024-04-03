@@ -87,6 +87,8 @@ public class UILineRenderer : Graphic
     {
         UIVertex vertex = UIVertex.simpleVert;
         vertex.color = color;
+        if (xGrad == 0) xGrad = 1;
+        if (yGrad == 0) yGrad = 1;
 
         vertex.position = Quaternion.Euler(0, 0, angle) * new Vector3(- thickness / 2, 0);
         vertex.position += new Vector3(xOrigin + unitWidth * point.x / xGrad, yOrigin + unitHeight * point.y / yGrad);
