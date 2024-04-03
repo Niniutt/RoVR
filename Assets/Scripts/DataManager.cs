@@ -72,7 +72,7 @@ public class DataManager : ScriptableObject
             {
                 closest = i - 1;
                 fraction = number / Mathf.Pow(10, i - 1);
-                graduation = CalculateGraduation(closest, fraction);
+                graduation = CalculateGraduation(closest, number);
                 if (graduation == 0) Debug.LogException(new System.Exception("Graduation was not found"));
                 break;
             }
@@ -80,16 +80,18 @@ public class DataManager : ScriptableObject
     }
 
     // Calculate the graduation that's going to be shown on the graph
-    private float CalculateGraduation(int closest, float fraction)
+    private float CalculateGraduation(int closest, float number)
     {
-        for (int i = 0; i < possibleGraduations.Length; i++) {
-            if (fraction / possibleGraduations[i] > gMax)
+        for (int i = 0; i < possibleGraduations.Length; i++)
+        {
+            // Debug.Log("fraction: " + fraction + "; possiblegrad: " + possibleGraduations[i]);
+            if (number / possibleGraduations[i] > gMax)
             {
                 continue;
             }
             else
             {
-                return possibleGraduations[i] * Mathf.Pow(10, closest);
+                return possibleGraduations[i]; // * Mathf.Pow(10, closest);
             }
         }
         return 0;

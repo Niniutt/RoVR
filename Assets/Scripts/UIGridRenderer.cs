@@ -38,9 +38,12 @@ public class UIGridRenderer : Graphic
 
         int count = 0;
 
-        for (int y = 0; y < gridSize.y; y++) 
+        float xLim = gridSize.x;
+        float yLim = gridSize.y;
+
+        for (int y = 0; y < yLim; y++) 
         {
-            for (int x = 0; x < gridSize.x; x++)
+            for (int x = 0; x < xLim; x++)
             {
                 DrawCell(x, y, count, vh);
                 count++;

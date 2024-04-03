@@ -40,11 +40,13 @@ public class SpawnNumbers : MonoBehaviour
             if (go) Destroy(go.gameObject);
         }
 
+        // Debug.Log("Gridsize: " + dataManager.gridSize.x + "; axisPositions length: " + axisRenderer.axisPositionsH.Count);
+
         // Horizontal axis
         for (int i =  0; i < dataManager.gridSize.x; i++)
         {
             // Add text
-
+            if (i >= axisRenderer.axisPositionsH.Count) continue;
             Vector2 position = axisRenderer.axisPositionsH[i];
             position += offsetH;
             AddText(position, (i * dataManager.xGrad).ToString("#.00"), Axis.H, i);
@@ -52,6 +54,7 @@ public class SpawnNumbers : MonoBehaviour
         // Vertical axis
         for (int j = 0; j < dataManager.gridSize.y; j++)
         {
+            if (j >= axisRenderer.axisPositionsV.Count) continue;
             Vector2 position = axisRenderer.axisPositionsV[j];
             position += offsetV;
             AddText(position, (j * dataManager.xGrad).ToString("#.00"), Axis.V, j);
