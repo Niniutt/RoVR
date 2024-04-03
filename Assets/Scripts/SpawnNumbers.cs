@@ -17,6 +17,8 @@ public class SpawnNumbers : MonoBehaviour
 
     private enum Axis { H, V };
     private List<string> names = new List<string>();
+    private Vector2 offsetH = new Vector2(-5.25f, -6f);
+    private Vector2 offsetV = new Vector2(-6.25f, -5.25f);
 
     void Awake()
     {
@@ -43,13 +45,16 @@ public class SpawnNumbers : MonoBehaviour
         {
             // Add text
 
-            Vector2 position = axisRenderer.axisPositionsH[i]; // new Vector2(0, i * 10);
+            Vector2 position = axisRenderer.axisPositionsH[i];
+            position += offsetH;
             AddText(position, (i * dataManager.xGrad).ToString("#.00"), Axis.H, i);
         }
         // Vertical axis
         for (int j = 0; j < dataManager.gridSize.y; j++)
         {
-            // AddText(position, text, Axis.V);
+            Vector2 position = axisRenderer.axisPositionsV[j];
+            position += offsetV;
+            AddText(position, (j * dataManager.xGrad).ToString("#.00"), Axis.V, j);
         }
     }
 

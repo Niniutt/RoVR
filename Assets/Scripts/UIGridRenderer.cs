@@ -6,8 +6,6 @@ using UnityEngine.UI;
 public class UIGridRenderer : Graphic
 {
     // Public variables
-    public DataLink dataLink;
-
     public Vector2 gridSize = new Vector2(3f, 3f);
     public float thickness = 0.03f;
 
