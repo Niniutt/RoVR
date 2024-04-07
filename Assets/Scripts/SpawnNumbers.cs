@@ -57,7 +57,7 @@ public class SpawnNumbers : MonoBehaviour
             if (j >= axisRenderer.axisPositionsV.Count) continue;
             Vector2 position = axisRenderer.axisPositionsV[j];
             position += offsetV;
-            AddText(position, (j * dataManager.xGrad).ToString("#.00"), Axis.V, j);
+            AddText(position, (j * dataManager.yGrad).ToString("#.00"), Axis.V, j);
         }
     }
 

@@ -12,16 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05802d880b664b64ba540b204949fd95, type: 3}
   m_Name: DataManager
   m_EditorClassIdentifier: 
-  gridSize: {x: 4, y: 5}
+  gridSize: {x: 4.5959997, y: 10}
   gridThickness: 0.03
   axisThickness: 0.01
   points:
   - {x: 0, y: 1}
   - {x: 1, y: 2}
-  - {x: 2.39, y: 4}
+  - {x: 2, y: 4}
   - {x: 3, y: 3}
-  - {x: 3.5, y: 0}
+  - {x: 3.3, y: 0}
   - {x: 3.6, y: 5}
   - {x: 4, y: 4}
-  xGrad: 1
-  yGrad: 1
+  xGrad: 2.5
+  yGrad: 0.5

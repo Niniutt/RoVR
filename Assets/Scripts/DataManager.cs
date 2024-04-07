@@ -36,6 +36,14 @@ public class DataManager : ScriptableObject
             new Vector2(3.6f, 5f),
             new Vector2(4f, 4f)
         };
+        possibleGraduations = new float[(maxPower - minPower + 1) * 3];
+        for (int i = 0; i < maxPower - minPower + 1; i++)
+        {
+            possibleGraduations[3 * i + 0] = 1f * Mathf.Pow(10, minPower + i);
+            possibleGraduations[3 * i + 1] = 2.5f * Mathf.Pow(10, minPower + i);
+            possibleGraduations[3 * i + 2] = 5f * Mathf.Pow(10, minPower + i);
+        }
+        // Debug.Log("possible graduations elements" + possibleGraduations[0] + " " + possibleGraduations[(maxPower - minPower + 1) * 3 - 1] + " " + possibleGraduations[(maxPower - minPower + 1) * 3 - 2]) ;
     }
 
     public void Update()
@@ -84,14 +92,14 @@ public class DataManager : ScriptableObject
     {
         for (int i = 0; i < possibleGraduations.Length; i++)
         {
-            // Debug.Log("fraction: " + fraction + "; possiblegrad: " + possibleGraduations[i]);
+            // Debug.Log("number: " + number + "; possiblegrad: " + possibleGraduations[i] + "; closest: " + closest);
             if (number / possibleGraduations[i] > gMax)
             {
                 continue;
             }
             else
             {
-                return possibleGraduations[i] * Mathf.Pow(10, closest);
+                return possibleGraduations[i];//  * Mathf.Pow(10, closest);
             }
         }
         return 0;
