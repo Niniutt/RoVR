@@ -70,11 +70,9 @@ public class SpawnNumbers : MonoBehaviour
         // Create the Text GameObject.
         GameObject textGO = new GameObject();
         string name = "AxisNumber" + axis.ToString() + index.ToString();
-        names.Add(name);
         textGO.name = name;
+        names.Add(name);
         textGO.transform.parent = canvasParent.transform;
-        // Adjust position
-        // textGO.transform.localPosition = new Vector3(position.x, position.y, 0);
         textGO.AddComponent<Text>();
 
         // Set Text component properties.
