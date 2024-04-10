@@ -9,6 +9,7 @@ public class UIBattery : MonoBehaviour
     public TextMeshProUGUI currentBattery;
     public TextMeshProUGUI batteryRemainingEst;
     public TextMeshProUGUI timeTilAscent;
+    //public TextMeshProUGUI batteryNeededForAscent;
     public Transform notificationParent;
     private int lastCheckedNotificationCount = 0;
     private int activeNotifications = 2;

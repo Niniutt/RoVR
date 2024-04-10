@@ -137,7 +137,6 @@ public class TCPServer : MonoBehaviour
         //Debug.Log($"Key: {key}, Value: {value}");
         switch (key)
         {
-            case "Message": UIParent.BroadcastMessage("OnMessageUpdate", value, SendMessageOptions.DontRequireReceiver); break;
             case "time": 
             {
                 data.time = float.Parse(value); 
