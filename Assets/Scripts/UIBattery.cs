@@ -32,7 +32,7 @@ public class UIBattery : MonoBehaviour
     {
         currentBattery.text = ((int)battery).ToString() + "%";
         
-        if (DataObject.batteryLog.Count % 100 == 0)
+        if (DataObject.batteryLog.Count % 50 == 0)
         {
             batteryDataManager.CustomUpdate(new Vector2(DataObject.time, battery));
             // Debug.Log("Add point" + Time.deltaTime);
