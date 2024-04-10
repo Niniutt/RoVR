@@ -8068,6 +8068,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvasParent: {fileID: 316304747}
   axisRenderer: {fileID: 665582534}
+  identificator: Depth
 --- !u!1 &1565717764
 GameObject:
   m_ObjectHideFlags: 0
@@ -9389,6 +9390,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvasParent: {fileID: 1829621026}
   axisRenderer: {fileID: 600360899}
+  identificator: Battery
 --- !u!1 &1820598133
 GameObject:
   m_ObjectHideFlags: 0
@@ -9748,6 +9750,7 @@ MonoBehaviour:
   pressure: {fileID: 754935630}
   currTime: {fileID: 211334753}
   timeTilAscent: {fileID: 1022040323}
+  depthDataManager: {fileID: 21100557}
   notificationParent: {fileID: 1820598134}
 --- !u!114 &1874003275
 MonoBehaviour:

@@ -10,6 +10,7 @@ public class UIDepth : MonoBehaviour
     public TextMeshProUGUI pressure;
     public TextMeshProUGUI currTime;
     public TextMeshProUGUI timeTilAscent;
+    public DataManager depthDataManager;
     public Transform notificationParent;
     private int lastCheckedNotificationCount = 0;
     private int activeNotifications = 3;
@@ -30,6 +31,11 @@ public class UIDepth : MonoBehaviour
     public void OnDepthUpdate(float depthValue)
     {
         depth.text = depthValue.ToString() + "m";
+
+        if (DataObject.batteryLog.Count % 50 == 0)
+        {
+            depthDataManager.CustomUpdate(new Vector2(DataObject.time, depthValue));
+        }
     }
     public void OnPressureUpdate(float pressureValue)
     {

@@ -35,7 +35,6 @@ public class UIBattery : MonoBehaviour
         if (DataObject.batteryLog.Count % 50 == 0)
         {
             batteryDataManager.CustomUpdate(new Vector2(DataObject.time, battery));
-            // Debug.Log("Add point" + Time.deltaTime);
         }  
     }
     public void OnBatteryLifetimeUpdate(float time)
