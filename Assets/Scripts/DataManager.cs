@@ -4,16 +4,21 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-[CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/DataManager", order = 1)]
-public class DataManager : ScriptableObject
+public class DataManager : MonoBehaviour
 {
     // Public variables
+    public DataLink dataLink;
+
     public Vector2 gridSize;
 
     public float gridThickness = 0.03f;
     public float axisThickness = 0.01f;
 
-    public List<Vector2> points;
+    public List<Vector2> points = new List<Vector2>
+    {
+        new Vector2(0f, 0f),
+        new Vector2(1f, 1f)
+    };
 
     public float xGrad;
     public float yGrad;
@@ -24,18 +29,10 @@ public class DataManager : ScriptableObject
     private int gMax = 10;
     private float[] possibleGraduations = { 1f, 2.5f, 5f };
 
-    public void Init()
+    public void Start()
     {
-        points = new List<Vector2>
-        {
-            new Vector2(0f, 1f),
-            new Vector2(1f, 2f),
-            new Vector2(2f, 4f),
-            new Vector2(3f, 3f),
-            new Vector2(3.5f, 0f),
-            new Vector2(3.6f, 5f),
-            new Vector2(4f, 4f)
-        };
+        points = new List<Vector2>{};
+
         possibleGraduations = new float[(maxPower - minPower + 1) * 3];
         for (int i = 0; i < maxPower - minPower + 1; i++)
         {
@@ -43,15 +40,21 @@ public class DataManager : ScriptableObject
             possibleGraduations[3 * i + 1] = 2.5f * Mathf.Pow(10, minPower + i);
             possibleGraduations[3 * i + 2] = 5f * Mathf.Pow(10, minPower + i);
         }
-        // Debug.Log("possible graduations elements" + possibleGraduations[0] + " " + possibleGraduations[(maxPower - minPower + 1) * 3 - 1] + " " + possibleGraduations[(maxPower - minPower + 1) * 3 - 2]) ;
     }
 
-    public void Update()
+    private void Update()
     {
+        // Nothing
+    }
+
+    public void CustomUpdate(Vector2 newPoint)
+    {
+        points.Add(newPoint);
+
         float xMax = points.Max(v => v.x);
         float xMin = points.Min(v => v.x);
         float yMax = points.Max(v => v.y);
-        float yMin = points.Min(v => v.y);
+        float yMin = 0; // points.Min(v => v.y);
 
         float xDifference = xMax - xMin;
         float yDifference = yMax - yMin;
@@ -60,9 +63,12 @@ public class DataManager : ScriptableObject
         int yN;
         CalculateClosestPowerOfTen(xDifference, out xN, out xGrad);
         CalculateClosestPowerOfTen(yDifference, out yN, out yGrad);
+        // Debug.Log("Here: " + yDifference + " " + yN + " " + yGrad);
 
         // Update gridSize
         gridSize = new Vector2(xMax / xGrad, yMax / yGrad);
+
+        dataLink.CustomUpdate(gridSize, xGrad, yGrad, points);
     }
 
     // Calculate the closest power of ten, rounding by default

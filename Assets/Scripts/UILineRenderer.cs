@@ -8,14 +8,13 @@ using UnityEngine.UIElements;
 public class UILineRenderer : Graphic
 {
     // Public variables
-    public Vector2 gridSize;
-    public List<Vector2> points;
-    public float xGrad;
-    public float yGrad;
-
     public float thickness = 0.03f;
 
     // Private variables
+    private Vector2 gridSize = new Vector2(3, 3);
+    private List<Vector2> points;
+    private float xGrad = 1;
+    private float yGrad = 1;
 
     private float xOrigin = 0;
     private float yOrigin = 0;
@@ -25,9 +24,21 @@ public class UILineRenderer : Graphic
     private float unitWidth;
     private float unitHeight;
 
-    // Update gridSize and points
     private void Update()
     {
+        
+    }
+
+    // Update gridSize and points
+    public void CustomUpdate(Vector2 gridSize, float xGrad, float yGrad, List<Vector2> points)
+    {
+        this.gridSize = gridSize;
+
+        this.xGrad = xGrad;
+        this.yGrad = yGrad;
+
+        this.points = points;
+
         // Redraw vertices (= setting the vertices as "outdated")
         SetVerticesDirty();
     }

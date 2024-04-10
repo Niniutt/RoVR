@@ -9,6 +9,7 @@ public class UIBattery : MonoBehaviour
     public TextMeshProUGUI currentBattery;
     public TextMeshProUGUI batteryRemainingEst;
     public TextMeshProUGUI timeTilAscent;
+    public DataManager batteryDataManager;
     //public TextMeshProUGUI batteryNeededForAscent;
     public Transform notificationParent;
     private int lastCheckedNotificationCount = 0;
@@ -30,7 +31,12 @@ public class UIBattery : MonoBehaviour
     public void OnBatteryUpdate(float battery)
     {
         currentBattery.text = ((int)battery).ToString() + "%";
-
+        
+        if (DataObject.batteryLog.Count % 100 == 0)
+        {
+            batteryDataManager.CustomUpdate(new Vector2(DataObject.time, battery));
+            // Debug.Log("Add point" + Time.deltaTime);
+        }  
     }
     public void OnBatteryLifetimeUpdate(float time)
     {

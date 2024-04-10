@@ -139,14 +139,14 @@ public class TCPServer : MonoBehaviour
         {
             case "time": 
             {
-                data.time = float.Parse(value); 
-                UIParent.BroadcastMessage("OnTimeUpdate", data.time, SendMessageOptions.DontRequireReceiver);
+                DataObject.time = float.Parse(value); 
+                UIParent.BroadcastMessage("OnTimeUpdate", DataObject.time, SendMessageOptions.DontRequireReceiver);
                 break;    
             }
             case "battery":
             {
                 data.battery = float.Parse(value); 
-                data.batteryLog.Add(data.battery);
+                DataObject.batteryLog.Add(data.battery);
                 UIParent.BroadcastMessage("OnBatteryUpdate", data.battery, SendMessageOptions.DontRequireReceiver);
                 break;
             }

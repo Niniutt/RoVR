@@ -11,9 +11,9 @@ public class DataObject : ScriptableObject
 
     public List<float> depthLog = new List<float>();
     public List<float> velocityLog = new List<float>();
-    public List<float> batteryLog = new List<float>();
+    public static List<float> batteryLog = new List<float>();
 
-    public float time = 0;
+    public static float time = 0;
     public float time_before_ascent = 0;
     public float battery = 0;
     public float batteryLifetime = 0;

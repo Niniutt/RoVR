@@ -10,13 +10,14 @@ using UnityEngine.UIElements;
 public class UIAxisRenderer : Graphic
 {
     // Public variables
-    public Vector2 gridSize;
     public List<Vector2> axisPositionsH = new List<Vector2>();
     public List<Vector2> axisPositionsV = new List<Vector2>();
 
     public float thickness = 0.03f;
 
     // Private variables
+    private Vector2 gridSize = new Vector2(3, 3);
+
     private float xOrigin = 0;
     private float yOrigin = 0;
 
@@ -27,9 +28,16 @@ public class UIAxisRenderer : Graphic
 
     private int count = 0;
 
-    // Update gridSize following UIGridRenderer's gridSize parameter
     private void Update()
     {
+        
+    }
+
+    // Update gridSize following UIGridRenderer's gridSize parameter
+    public void CustomUpdate(Vector2 gridSize)
+    {
+        this.gridSize = gridSize;
+
         // Redraw vertices (= setting the vertices as "outdated")
         SetVerticesDirty();
     }
@@ -38,12 +46,6 @@ public class UIAxisRenderer : Graphic
     protected override void OnPopulateMesh(VertexHelper vh)
     {
         vh.Clear();
-
-        /*if (gridRenderer != null)
-        {
-            xOrigin = gridRenderer.xOrigin;
-            yOrigin = gridRenderer.yOrigin;
-        }*/
 
         width = rectTransform.rect.width;
         height = rectTransform.rect.height;

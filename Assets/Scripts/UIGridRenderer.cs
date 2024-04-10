@@ -6,21 +6,29 @@ using UnityEngine.UI;
 public class UIGridRenderer : Graphic
 {
     // Public variables
-    public Vector2 gridSize = new Vector2(3f, 3f);
     public float thickness = 0.03f;
 
     public float xOrigin = 0;
     public float yOrigin = 0;
 
     // Private variables
+    private Vector2 gridSize = new Vector2(3, 3);
+
     private float width;
     private float height;
     private float cellWidth;
     private float cellHeight;
 
-    // Update function
-    public void Update()
+    private void Update()
     {
+        
+    }
+
+    // Update function
+    public void CustomUpdate(Vector2 gridSize)
+    {
+        this.gridSize = gridSize;
+        
         // Redraw vertices (= setting the vertices as "outdated")
         SetVerticesDirty();
     }
