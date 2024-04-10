@@ -10,12 +10,12 @@ public class UILineRenderer : Graphic
     // Public variables
     public Vector2 gridSize;
     public List<Vector2> points;
+    public float xGrad;
+    public float yGrad;
 
     public float thickness = 0.03f;
 
     // Private variables
-    private float xMax;
-    private float yMax;
 
     private float xOrigin = 0;
     private float yOrigin = 0;
@@ -47,9 +47,6 @@ public class UILineRenderer : Graphic
                 new Vector2(1f, 1f)
             };
         }
-
-        xMax = points.Max(v => v.x);
-        yMax = points.Max(v => v.y);
 
         // Closest power of ten?
         //CalculateClosestPowerOfTen(xMax);
@@ -90,13 +87,15 @@ public class UILineRenderer : Graphic
     {
         UIVertex vertex = UIVertex.simpleVert;
         vertex.color = color;
+        if (xGrad == 0) xGrad = 1;
+        if (yGrad == 0) yGrad = 1;
 
         vertex.position = Quaternion.Euler(0, 0, angle) * new Vector3(- thickness / 2, 0);
-        vertex.position += new Vector3(xOrigin + unitWidth * point.x, yOrigin + unitHeight * point.y);
+        vertex.position += new Vector3(xOrigin + unitWidth * point.x / xGrad, yOrigin + unitHeight * point.y / yGrad);
         vh.AddVert(vertex);
 
         vertex.position = Quaternion.Euler(0, 0, angle) * new Vector3(thickness / 2, 0);
-        vertex.position += new Vector3(xOrigin + unitWidth * point.x, yOrigin + unitHeight * point.y);
+        vertex.position += new Vector3(xOrigin + unitWidth * point.x / xGrad, yOrigin + unitHeight * point.y / yGrad);
         vh.AddVert(vertex);
     }
 }

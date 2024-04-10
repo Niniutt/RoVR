@@ -26,6 +26,10 @@ public class DataLink : MonoBehaviour
         lineRenderer.gridSize = gridSize;
         gridRenderer.gridSize = gridSize;
 
+
+        lineRenderer.xGrad = dataManager.xGrad;
+        lineRenderer.yGrad = dataManager.yGrad;
+
         lineRenderer.points = dataManager.points;
     }
 }
