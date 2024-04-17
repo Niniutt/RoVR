@@ -86,7 +86,7 @@ def orientationVals(numSamples, var):
         # orientation.append(1.25*ast.literal_eval(data[i]["orientation"]))
         # orientation.append(np.multiply(1.25, ast.literal_eval(data[i]["orientation"])))
 
-        val = [orien for orien in np.multiply(1.25, ast.literal_eval(data[i]["orientation"]))]
+        val = [orien for orien in np.multiply(1/1.25, ast.literal_eval(data[i]["orientation"]))]
         orientation.append(val)
 
     return orientation
