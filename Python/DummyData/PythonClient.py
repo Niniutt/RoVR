@@ -4,7 +4,7 @@ import ast
 import time
 
 dataset = 'DataSet01'
-input_file = open('ProcessedData/' + dataset + 'Resampled/data.csv', 'r')
+input_file = open('ProcessedData/FictionalData/data_fictional.csv', 'r')
 
 data_dict = []
 
@@ -30,9 +30,9 @@ try:
         est_battery_life = float(data_dict[i]["estimated_battery_time"])
         est_ascent = float(data_dict[i]["estimated_time_before_ascent"])
         orientation = ast.literal_eval(data_dict[i]["orientation"])
-        angular_v = ast.literal_eval(data_dict[i]["angular_v"])
-        linear_a = ast.literal_eval(data_dict[i]["linear_a"])
-        doppler_v = ast.literal_eval(data_dict[i]["doppler_v"])
+        # angular_v = ast.literal_eval(data_dict[i]["angular_v"])
+        # linear_a = ast.literal_eval(data_dict[i]["linear_a"])
+        # doppler_v = ast.literal_eval(data_dict[i]["doppler_v"])
 
         data = str("{"
                    "[time : " + str(time_val) +
@@ -42,9 +42,9 @@ try:
                    "],[battery_lifetime : [" + str(est_battery_life) +
                    "],[time_before_ascent : [" + str(est_ascent) +
                    "],[orientation : " + str(orientation) +
-                   "],[angular_velocity : " + str(angular_v) +
-                   "],[linear_acceleration : " + str(linear_a) +
-                   "],[doppler_velocity : " + str(doppler_v) +
+                   # "],[angular_velocity : " + str(angular_v) +
+                   # "],[linear_acceleration : " + str(linear_a) +
+                   # "],[doppler_velocity : " + str(doppler_v) +
                    "]}")
 
         sock.sendall(data.encode("utf-8"))
